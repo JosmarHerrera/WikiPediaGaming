@@ -1,5 +1,5 @@
 /* ===================================
-   WIKIJOSMARX — MINIMAL DESIGN
+   = JOSMAR CALEB HERRERA FRANCISCO =
    ================================== */
 
    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
@@ -27,7 +27,7 @@
      --transition:   all 0.2s ease;
    }
    
-   /* ── Reset ── */
+   /* ── Reseteo ── */
    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
    html { scroll-behavior: smooth; }
    body {
@@ -45,13 +45,10 @@
    ::-webkit-scrollbar-track { background: var(--bg); }
    ::-webkit-scrollbar-thumb { background: var(--border-dark); border-radius: 3px; }
    
-   /* ── Utilities ── */
    .container { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
    .hidden { display: none !important; }
    
-   /* ══════════════════════════════════════
-      HEADER
-   ══════════════════════════════════════ */
+   /*HEADER*/
    .site-header {
      position: sticky;
      top: 0;
@@ -95,7 +92,7 @@
    
    .logo-text span { color: var(--red); }
    
-   /* Search */
+   /* Buscador */
    .search-bar {
      flex: 1;
      max-width: 380px;
@@ -187,9 +184,7 @@
      color: var(--text-1);
    }
    
-   /* ══════════════════════════════════════
-      HERO
-   ══════════════════════════════════════ */
+  
    .hero {
      background: var(--bg-white);
      border-bottom: 1px solid var(--border);
@@ -256,9 +251,7 @@
      animation: pulse 1.5s ease-in-out infinite;
    }
    
-   /* ══════════════════════════════════════
-      FILTER BAR
-   ══════════════════════════════════════ */
+   /* FILTRADO */
    .filter-bar {
      background: var(--bg-white);
      border-bottom: 1px solid var(--border);
@@ -303,9 +296,7 @@
      border-color: var(--accent);
    }
    
-   /* ══════════════════════════════════════
-      GAMES SECTION
-   ══════════════════════════════════════ */
+   /* GAMES SECCION*/
    .games-section { padding: 40px 0 80px; }
    
    .section-header {
@@ -338,9 +329,7 @@
      gap: 20px;
    }
    
-   /* ══════════════════════════════════════
-      GAME CARD
-   ══════════════════════════════════════ */
+   /* GAME CARTA */
    .game-card {
      background: var(--bg-white);
      border: 1px solid var(--border);
@@ -459,7 +448,7 @@
    
    .btn-ver:hover { background: #2a2a4e; border-color: #2a2a4e; }
    
-   /* Category badge colors */
+   /* Colores por categoria */
    .cat-accion    { background: #fff0f0; color: #b91c1c; border-color: #fca5a5; }
    .cat-rpg       { background: #f5f0ff; color: #7c3aed; border-color: #c4b5fd; }
    .cat-deportes  { background: #f0f9ff; color: #0369a1; border-color: #7dd3fc; }
@@ -470,9 +459,7 @@
    .cat-simulacion{ background: #fdf4ff; color: #9333ea; border-color: #d8b4fe; }
    .cat-default   { background: #f9f9f9; color: #555;    border-color: #e0e0e0; }
    
-   /* ══════════════════════════════════════
-      MODAL BASE
-   ══════════════════════════════════════ */
+   /* MODAL BASE*/
    .modal-overlay {
      position: fixed;
      inset: 0;
@@ -525,7 +512,7 @@
    
    .modal-close:hover { background: var(--border); color: var(--text-1); }
    
-   /* Game detail modal */
+   /* Modal de juegos modal */
    .modal-hero-img {
      width: 100%;
      height: 260px;
@@ -724,9 +711,7 @@
    }
    .success-sub { font-size: 0.88rem; color: var(--text-2); }
    
-   /* ══════════════════════════════════════
-      FOOTER
-   ══════════════════════════════════════ */
+   /*FOOTER */
    .site-footer {
      background: var(--bg-white);
      border-top: 1px solid var(--border);
@@ -839,9 +824,7 @@
    
    .footer-bottom:hover .footer-admin-link { color: var(--text-3); }
    
-   /* ══════════════════════════════════════
-      NO RESULTS
-   ══════════════════════════════════════ */
+   
    .no-results {
      grid-column: 1 / -1;
      text-align: center;
@@ -860,9 +843,9 @@
      color: var(--text-3);
    }
    
-   /* ══════════════════════════════════════
-      ANIMATIONS
-   ══════════════════════════════════════ */
+   /* ___________________________________
+      ANIMACIONES
+      ___________________________________ */
    @keyframes fadeIn {
      from { opacity: 0; transform: translateY(8px); }
      to   { opacity: 1; transform: translateY(0); }
@@ -878,9 +861,9 @@
      50%       { opacity: 0.5; }
    }
    
-   /* ══════════════════════════════════════
-      RESPONSIVE
-   ══════════════════════════════════════ */
+   /* ___________________________________
+      RESPONSIVO
+      ___________________________________ */
    @media (max-width: 900px) {
      .footer-top { grid-template-columns: 1fr; gap: 28px; }
      .hero-inner { flex-direction: column; align-items: flex-start; }
@@ -896,15 +879,15 @@
    }
    
    
-   /* ══════════════════════════════════════
+   /* __________________________________
       ADMIN — PANEL DE ADMINISTRACIÓN
-      (admin.html specific styles)
-   ══════════════════════════════════════ */
+      (JOSMAR CALEB HERRERA FRANCISCO)
+      __________________________________ */
    
    /* Dashboard oculto por defecto */
    #dashboard { display: none; min-height: 100vh; }
    
-   /* ── LOGIN ── */
+   /* Login */
    #loginOverlay {
      position: fixed; inset: 0;
      background: var(--bg);
@@ -997,7 +980,7 @@
    .login-back a { color: var(--text-3); transition: var(--transition); }
    .login-back a:hover { color: var(--accent); }
    
-   /* ── ADMIN HEADER ── */
+   /* Header administrador */
    .admin-header {
      background: var(--bg-white);
      border-bottom: 1px solid var(--border);
@@ -1064,10 +1047,10 @@
    
    .btn-ver-sitio:hover { color: var(--accent); }
    
-   /* ── ADMIN BODY ── */
+   /* Administrador*/
    .admin-body { max-width: 1320px; margin: 0 auto; padding: 36px 32px 80px; }
    
-   /* Stats */
+  
    .admin-stats {
      display: grid;
      grid-template-columns: repeat(4, 1fr);
@@ -1390,7 +1373,7 @@
    
    #toast.show { transform: translateX(-50%) translateY(0); }
    
-   /* ── ADMIN RESPONSIVE ── */
+   /* ── ADMIN RESPONSIVO ── */
    @media (max-width: 900px) {
      .admin-stats { grid-template-columns: 1fr 1fr; }
      .form-grid { grid-template-columns: 1fr; }

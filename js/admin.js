@@ -1,6 +1,6 @@
-// ============================================
-//  GAMERPEDIA - admin.js
-// ============================================
+/* ===================================
+   = JOSMAR CALEB HERRERA FRANCISCO =
+   ================================== */
 
 const STORAGE_KEY = 'gamerWiki_games';
 const JSON_PATH   = '../Json/videojuegos.json';
@@ -10,13 +10,13 @@ const ADMIN_PASS  = 'gamer2024';
 let games = [];
 let editingId = null;
 
-// ── Init ──────────────────────────────────
+
 document.addEventListener('DOMContentLoaded', () => {
   checkAuth();
   bindLoginForm();
 });
 
-// ── Auth ──────────────────────────────────
+
 function checkAuth() {
   if (sessionStorage.getItem('gamerWiki_admin') === 'true') {
     showDashboard();
@@ -58,7 +58,7 @@ async function showDashboard() {
   bindDashboardEvents();
 }
 
-// ── Games CRUD ────────────────────────────
+//  CRUD juegos
 async function loadGames() {
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored) {
@@ -82,7 +82,7 @@ function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
 }
 
-// ── Table Render ──────────────────────────
+// Tabla Render si no hay nada 
 function renderTable(filterText = '') {
   const tbody = document.getElementById('gamesTableBody');
   if (!tbody) return;
@@ -113,7 +113,7 @@ function renderTable(filterText = '') {
       <td><span class="tbl-badge cat-badge-${slugCat(game.categoria)}">${game.categoria || '—'}</span></td>
       <td class="tbl-mono">${game.anio_salida || '—'}</td>
       <td class="tbl-mono">${formatPlatforms(game.plataformas)}</td>
-      <td class="tbl-price">${game.precio != null ? '$' + Number(game.precio).toFixed(2) : 'F2P'}</td>
+      <td class="tbl-price">${game.precio != null ? '$' + Number(game.precio).toFixed(2) : 'FREE'}</td>
       <td>
         <div class="tbl-actions">
           <button class="btn-edit" onclick="openEditForm('${game.id}')">✏ Editar</button>
@@ -130,7 +130,7 @@ function formatPlatforms(plats) {
   return arr.slice(0, 2).join(', ') + (arr.length > 2 ? ` +${arr.length - 2}` : '');
 }
 
-// ── Form ──────────────────────────────────
+//  Formulario
 function openCreateForm() {
   editingId = null;
   const form = document.getElementById('gameForm');
@@ -159,7 +159,7 @@ window.openEditForm = function(id) {
     ? game.plataformas.join(', ') : (game.plataformas || '');
   document.getElementById('fPrecio').value = game.precio ?? '';
 
-  // Image preview
+  // Imagen previsualizacón
   if (game.imagen) {
     const preview = document.getElementById('imagePreview');
     preview.src = game.imagen;
@@ -190,14 +190,14 @@ function handleFormSubmit(e) {
   };
 
   if (editingId) {
-    // Update existing
+    // editar
     const idx = games.findIndex(g => g.id === editingId);
     if (idx !== -1) {
       games[idx] = { ...games[idx], ...gameData };
     }
     showToast('Videojuego actualizado correctamente ✓');
   } else {
-    // Create new
+    // crear
     gameData.id = generateId();
     games.unshift(gameData);
     showToast('Videojuego publicado correctamente ✓');
@@ -208,7 +208,7 @@ function handleFormSubmit(e) {
   closeModal('formModal');
 }
 
-// ── Delete ────────────────────────────────
+//  eliminar 
 let deleteTargetId = null;
 
 window.confirmDelete = function(id) {
@@ -228,7 +228,7 @@ function executeDelete() {
   deleteTargetId = null;
 }
 
-// ── Image preview ─────────────────────────
+// Imagen
 function previewImage() {
   const url = document.getElementById('fImagen').value.trim();
   const preview = document.getElementById('imagePreview');
@@ -241,7 +241,6 @@ function previewImage() {
   }
 }
 
-// ── Toast ─────────────────────────────────
 function showToast(msg) {
   const toast = document.getElementById('toast');
   toast.textContent = msg;
@@ -249,7 +248,7 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
-// ── Modal helpers ─────────────────────────
+// Modal
 function openModal(id) {
   document.getElementById(id)?.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -260,7 +259,7 @@ window.closeModal = function(id) {
   document.body.style.overflow = '';
 };
 
-// ── Bind events ───────────────────────────
+// eventos 
 function bindDashboardEvents() {
   document.getElementById('btnNewGame')?.addEventListener('click', openCreateForm);
   document.getElementById('gameForm')?.addEventListener('submit', handleFormSubmit);
@@ -286,7 +285,7 @@ function bindDashboardEvents() {
   });
 }
 
-// ── Helpers ───────────────────────────────
+//  tipos de categoria 
 function slugCat(cat) {
   if (!cat) return 'default';
   const map = {

@@ -2,6 +2,9 @@
    = JOSMAR CALEB HERRERA FRANCISCO =
    ================================== */
 
+    /*
+        https://github.com/bradtraversy/design-resources-for-developers?tab=readme-ov-file#html--css-templates 
+    */
    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
 
    /* ── Variables ── */
@@ -1385,3 +1388,4 @@
      .admin-stats { grid-template-columns: 1fr; }
      .tbl-img-wrap { display: none; }
    }
+

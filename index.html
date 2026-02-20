@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WikiJosmarX — Enciclopedia de Videojuegos</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+
+        <a href="index.html" class="logo">
+          <div class="logo-icon">🎮</div>
+          <span class="logo-text">WikiJosmar<span>X</span></span>
+        </a>
+
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Buscar videojuego...">
+        </div>
+
+        <nav class="main-nav">
+          <a href="index.html" class="nav-link active">Inicio</a>
+
+          <div class="nav-dropdown">
+            <button class="nav-link">Categorías ▾</button>
+            <div class="dropdown-menu" id="categoriesMenu"></div>
+          </div>
+
+          <button class="nav-link" id="propuestasNavBtn">Propuestas</button>
+        </nav>
+
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <p class="hero-eyebrow">enciclopedia de videojuegos</p>
+          <h1 class="hero-title">Wiki<span>JosmarX</span></h1>
+          <p class="hero-sub">
+            Explora el universo de los videojuegos. Información detallada
+            sobre títulos, categorías, plataformas y más, todo en un solo lugar.
+          </p>
+        </div>
+        <div class="hero-right">
+          <div class="game-count-badge">
+            <span class="badge-dot"></span>
+            <span id="gameCount">Cargando...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       FILTROS
+  ══════════════════════════════════════ -->
+  <div class="filter-bar">
+    <div class="container">
+      <div class="filter-tags">
+        <span class="filter-label">Filtrar por:</span>
+        <div id="filterTags" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       GAMES GRID
+  ══════════════════════════════════════ -->
+  <section class="games-section">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="section-title">Videojuegos</span>
+        <span class="section-count" id="sectionCount"></span>
+      </div>
+
+      <div class="games-grid" id="gamesGrid"></div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       GAME DETAIL MODAL
+  ══════════════════════════════════════ -->
+  <div class="modal-overlay" id="gameModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('gameModal')">✕</button>
+      <img id="mImg" src="" alt="" class="modal-hero-img">
+      <div class="modal-content">
+        <span id="mCat" class="modal-cat-badge"></span>
+        <h2 class="modal-title" id="mTitle"></h2>
+        <p class="modal-desc" id="mDesc"></p>
+
+        <div class="modal-grid">
+          <div class="modal-stat">
+            <p class="stat-label">Año de Salida</p>
+            <p class="stat-value" id="mAnioSalida"></p>
+          </div>
+          <div class="modal-stat">
+            <p class="stat-label">Última Actualización</p>
+            <p class="stat-value" id="mAnioUpdate"></p>
+          </div>
+        </div>
+
+        <p class="stat-label" style="margin-bottom:10px;">Plataformas disponibles</p>
+        <div class="modal-platforms" id="mPlatforms"></div>
+
+        <div class="modal-price-row">
+          <div>
+            <p class="stat-label" style="margin-bottom:4px;">Precio actual</p>
+            <p class="modal-price" id="mPrice"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       PROPUESTAS MODAL
+  ══════════════════════════════════════ -->
+  <div class="modal-overlay" id="propuestasModal">
+    <div class="modal-box propuestas-box">
+      <button class="modal-close" id="closePropuestas">✕</button>
+
+      <div class="modal-header-block">
+        <p class="modal-eyebrow">formulario de mejora</p>
+        <h2 class="modal-heading">Enviar Propuesta</h2>
+        <p class="modal-sub">
+          ¿Encontraste información desactualizada o quieres sugerir algo?
+          Completa el formulario y lo revisaremos.
+        </p>
+      </div>
+
+      <form class="form-body" id="propForm">
+        <div class="form-group">
+          <label class="form-label" for="propCategoria">Categoría</label>
+          <select class="form-control" id="propCategoria" required>
+            <option value="">— Selecciona una categoría —</option>
+            <option>Acción</option><option>RPG</option><option>Deportes</option>
+            <option>Terror</option><option>Aventura</option><option>Estrategia</option>
+            <option>Ficción</option><option>Simulación</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="propGameTitle">Videojuego / Título</label>
+          <select class="form-control" id="propGameTitle" required>
+            <option value="">— Selecciona un videojuego —</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="propAsunto">Asunto</label>
+          <input type="text" class="form-control" id="propAsunto"
+                 placeholder="Ej: Precio desactualizado, información incorrecta..." required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="propDescripcion">Descripción de la mejora</label>
+          <textarea class="form-control" id="propDescripcion"
+                    placeholder="Describe qué debe modificarse y por qué..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary">Enviar propuesta</button>
+      </form>
+
+      <div class="form-success" id="propSuccess">
+        <div class="success-icon">✅</div>
+        <p class="success-msg">¡Propuesta enviada!</p>
+        <p class="success-sub">
+          Gracias por contribuir a mejorar WikiJosmarX.<br>Tu propuesta será revisada pronto.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+
+        <!-- Creador + Social -->
+        <div>
+          <div class="footer-logo">WikiJosmar<span>X</span></div>
+          <div class="footer-creator-info">
+            <p><strong>Creado por:</strong> Josmar Caleb Herrera Francisco</p>
+            <p><strong>Versión:</strong> 1.10.07</p>
+            <p><strong>Contacto:</strong> josmarcal58@gmail.com</p>
+            <p> 2026 WikiJosmarX ©. Todos los derechos reservados.</p>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-link" title="YouTube" target="_blank">YT</a>
+            <a href="#" class="social-link" title="LinkedIn" target="_blank">in</a>
+            <a href="#" class="social-link" title="Instagram" target="_blank">IG</a>
+          </div>
+        </div>
+
+        <!-- Sobre -->
+        <div>
+          <p class="footer-about-title">Sobre los Videojuegos</p>
+          <p class="footer-about-text">
+            Los videojuegos son una de las formas de entretenimiento más dinámicas del siglo XXI.
+            Combinan arte, narrativa, música y tecnología para crear experiencias únicas que trascienden
+            generaciones y culturas. WikiJosmarX nació para documentar su historia, evolución y todo
+            lo que necesitas saber sobre cada título.
+          </p>
+        </div>
+
+        <!-- Mapa -->
+        <div>
+          <p class="footer-map-label">Nuestra ubicación</p>
+          <div class="footer-map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.0!2d-99.1269!3d19.4326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzU3LjQiTiA5OcKwMDcnMzYuOCJX!5e0!3m2!1ses!2smx!4v1"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa de ubicación">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copy">WikiJosmarX © 2026 — Construido con pasión por los videojuegos</span>
+        <span class="footer-admin-link">[ admin ]</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="js/main.js"></script>
+</body>
+</html>

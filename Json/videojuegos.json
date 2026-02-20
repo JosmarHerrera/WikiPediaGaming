@@ -1,0 +1,68 @@
+[
+    {
+      "id": "1",
+      "titulo": "Cyberpunk 2077",
+      "descripcion": "Un RPG de mundo abierto ambientado en Night City, una megalópolis obsesionada con el poder, la glamour y la modificación corporal. Tú eres V, un mercenario en busca de un implante único que da la clave a la inmortalidad.",
+      "imagen": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/capsule_616x353.jpg",
+      "anio_salida": 2020,
+      "anio_ultima_actualizacion": 2023,
+      "categoria": "RPG",
+      "plataformas": ["PC", "PS5", "Xbox Series X"],
+      "precio": 39.99
+    },
+    {
+      "id": "2",
+      "titulo": "The Witcher 3: Wild Hunt",
+      "descripcion": "Una épica historia de aventuras en un mundo de fantasía abierto. Como Geralt de Rivia, el brujo más poderoso de su época, debes encontrar a tu pupila Ciri mientras el Ejército Fantasma arrasa todo a su paso.",
+      "imagen": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/capsule_616x353.jpg",
+      "anio_salida": 2015,
+      "anio_ultima_actualizacion": 2022,
+      "categoria": "RPG",
+      "plataformas": ["PC", "PS4", "PS5", "Xbox One", "Nintendo Switch"],
+      "precio": 29.99
+    },
+    {
+      "id": "3",
+      "titulo": "God of War",
+      "descripcion": "Kratos, antiguo dios griego de la guerra, ahora vive en la mitología nórdica junto a su hijo Atreus. Un viaje de redención, paternidad y brutal combate a través de los nueve reinos.",
+      "imagen": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1593500/capsule_616x353.jpg",
+      "anio_salida": 2022,
+      "anio_ultima_actualizacion": 2022,
+      "categoria": "Acción",
+      "plataformas": ["PC", "PS4", "PS5"],
+      "precio": 49.99
+    },
+    {
+      "id": "4",
+      "titulo": "Hollow Knight",
+      "descripcion": "Un juego de aventura y exploración épico construido alrededor de un vasto mundo interconectado. Explora cavernas retorcidas, lucha contra criaturas corruptas, y entabla amistad con personajes curiosos.",
+      "imagen": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/capsule_616x353.jpg",
+      "anio_salida": 2017,
+      "anio_ultima_actualizacion": 2018,
+      "categoria": "Aventura",
+      "plataformas": ["PC", "Nintendo Switch", "PS4", "Xbox One"],
+      "precio": 14.99
+    },
+    {
+      "id": "5",
+      "titulo": "FIFA 24",
+      "descripcion": "La edición más realista de la saga FIFA. Experimenta el fútbol como nunca antes con tecnología HyperMotionV, animaciones capturadas de más de 180 partidos de fútbol real y modos de juego renovados.",
+      "imagen": "https://media.contentapi.ea.com/content/dam/ea/ea-fc/fc-24/buy/fc24-standard-edition-packshot-16x9.jpg.adapt.crop16x9.1455w.jpg",
+      "anio_salida": 2023,
+      "anio_ultima_actualizacion": 2024,
+      "categoria": "Deportes",
+      "plataformas": ["PC", "PS4", "PS5", "Xbox One", "Xbox Series X"],
+      "precio": 69.99
+    },
+    {
+      "id": "6",
+      "titulo": "Resident Evil Village",
+      "descripcion": "Continúa la historia de Ethan Winters en un pueblo misterioso europeo lleno de horrores sobrenaturales. Sobrevive a una aldea plagada de licántropos, vampiros y criaturas de pesadilla.",
+      "imagen": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1196590/capsule_616x353.jpg",
+      "anio_salida": 2021,
+      "anio_ultima_actualizacion": 2022,
+      "categoria": "Terror",
+      "plataformas": ["PC", "PS4", "PS5", "Xbox One", "Xbox Series X"],
+      "precio": 39.99
+    }
+  ]

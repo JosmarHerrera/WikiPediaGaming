@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WikiJosmarX — Administración</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       LOGIN
+  ══════════════════════════════════════ -->
+  <div id="loginOverlay">
+    <div id="adminCard">
+      <div class="login-icon">🔐</div>
+      <p class="login-eyebrow">acceso restringido</p>
+      <h1 class="login-title">Panel Admin</h1>
+
+      <div id="loginError"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="loginUser">Usuario</label>
+          <input type="text" class="form-control" id="loginUser"
+                 placeholder="Usuario" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="loginPass">Contraseña</label>
+          <input type="password" class="form-control" id="loginPass"
+                 placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="login-btn">Ingresar al panel</button>
+      </form>
+
+      <div class="login-back">
+        <a href="../index.html">← Volver al inicio</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       DASHBOARD
+  ══════════════════════════════════════ -->
+  <div id="dashboard">
+
+    <header class="admin-header">
+      <div class="admin-logo-wrap">
+        <span class="admin-logo">WikiJosmar<span>X</span></span>
+        <span class="admin-badge">ADMIN</span>
+      </div>
+      <div class="admin-header-right">
+        <a href="../index.html" class="btn-ver-sitio">← Ver sitio</a>
+        <button class="btn-logout" id="logoutBtn">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <div class="admin-body">
+
+      <!-- Stats -->
+      <div class="admin-stats">
+        <div class="stat-card">
+          <div class="stat-card-icon">🎮</div>
+          <p class="stat-card-label">Total Juegos</p>
+          <p class="stat-card-value" id="adminGameCount">0</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">🏷️</div>
+          <p class="stat-card-label">Categorías</p>
+          <p class="stat-card-value" id="adminCatCount">0</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">🖥️</div>
+          <p class="stat-card-label">Plataformas</p>
+          <p class="stat-card-value" id="adminPlatCount">—</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">📅</div>
+          <p class="stat-card-label">Última actualización</p>
+          <p class="stat-card-value stat-card-value--sm" id="adminLastUpdate">—</p>
+        </div>
+      </div>
+
+      <!-- Panel header -->
+      <div class="panel-header">
+        <span class="panel-title">Repositorio de videojuegos</span>
+        <button class="btn-new" id="btnNewGame">+ Publicar videojuego</button>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="table-toolbar">
+        <input type="text" class="table-search" id="tableSearch" placeholder="Buscar en repositorio...">
+        <span class="table-count"><span id="adminGameCount2">0</span> registros</span>
+      </div>
+
+      <!-- Table -->
+      <div class="games-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Título</th>
+              <th>Categoría</th>
+              <th>Año</th>
+              <th>Plataformas</th>
+              <th>Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="gamesTableBody">
+            <tr><td colspan="7" class="no-data">Cargando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       FORM MODAL (Crear / Editar)
+  ══════════════════════════════════════ -->
+  <div class="modal-overlay" id="formModal">
+    <div class="modal-box form-modal-box">
+      <button class="modal-close" onclick="closeModal('formModal')">✕</button>
+
+      <div class="form-modal-header">
+        <p class="form-modal-title" id="formModalTitle">Nuevo videojuego</p>
+      </div>
+
+      <form id="gameForm" class="form-body form-body-padded">
+        <div class="form-grid">
+
+          <div class="form-group form-group-full">
+            <label class="form-label" for="fTitulo">Título *</label>
+            <input type="text" class="form-control" id="fTitulo"
+                   placeholder="Ej: The Witcher 3" required>
+          </div>
+
+          <div class="form-group form-group-full">
+            <label class="form-label" for="fDescripcion">Descripción</label>
+            <textarea class="form-control" id="fDescripcion" rows="4"
+                      placeholder="Describe el videojuego..."></textarea>
+          </div>
+
+          <div class="form-group form-group-full">
+            <label class="form-label" for="fImagen">URL de imagen</label>
+            <input type="url" class="form-control" id="fImagen"
+                   placeholder="https://ejemplo.com/imagen.jpg">
+            <img id="imagePreview" src="" alt="Vista previa">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="fAnioSalida">Año de salida</label>
+            <input type="number" class="form-control" id="fAnioSalida"
+                   placeholder="2024" min="1970" max="2100">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="fAnioUpdate">Año última actualización</label>
+            <input type="number" class="form-control" id="fAnioUpdate"
+                   placeholder="2024" min="1970" max="2100">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="fCategoria">Categoría</label>
+            <select class="form-control" id="fCategoria">
+              <option value="">— Seleccionar —</option>
+              <option>Acción</option><option>RPG</option><option>Deportes</option>
+              <option>Terror</option><option>Aventura</option><option>Estrategia</option>
+              <option>Ficción</option><option>Simulación</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="fPrecio">Precio actual (MXN)</label>
+            <input type="number" class="form-control" id="fPrecio"
+                   placeholder="0.00  (vacío = F2P)" min="0" step="0.01">
+          </div>
+
+          <div class="form-group form-group-full">
+            <label class="form-label" for="fPlataformas">Plataformas (separadas por coma)</label>
+            <input type="text" class="form-control" id="fPlataformas"
+                   placeholder="PC, PS5, Xbox Series X, Nintendo Switch">
+          </div>
+
+          <button type="submit" class="btn-submit" id="formSubmitBtn">
+            Publicar videojuego
+          </button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       DELETE CONFIRM MODAL
+  ══════════════════════════════════════ -->
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal-box delete-modal-box">
+      <div class="delete-icon">🗑️</div>
+      <p class="delete-title">Confirmar eliminación</p>
+      <p class="delete-msg">
+        Estás a punto de eliminar permanentemente<br>
+        <strong id="deleteGameName"></strong>.<br>
+        Esta acción no se puede deshacer.
+      </p>
+      <div class="delete-actions">
+        <button class="btn-cancel" onclick="closeModal('deleteModal')">Cancelar</button>
+        <button class="btn-confirm-delete" id="confirmDeleteBtn">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="toast"></div>
+
+
+  <script src="../js/admin.js"></script>
+  <script>
+    // Sincronizar contador secundario y stats cuando la tabla cambia
+    const tableObserver = new MutationObserver(() => {
+      const count = document.getElementById('adminGameCount')?.textContent || '0';
+      const el2 = document.getElementById('adminGameCount2');
+      if (el2) el2.textContent = count;
+
+      const lastEl = document.getElementById('adminLastUpdate');
+      if (lastEl && lastEl.textContent === '—') {
+        const now = new Date();
+        lastEl.textContent = now.toLocaleDateString('es-MX', { day: '2-digit', month: 'short' });
+      }
+    });
+
+    const tbody = document.getElementById('gamesTableBody');
+    if (tbody) tableObserver.observe(tbody, { childList: true, subtree: true });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const stored = localStorage.getItem('gamerWiki_games');
+        if (stored) {
+          const gms = JSON.parse(stored);
+          const cats  = new Set(gms.map(g => g.categoria).filter(Boolean));
+          const plats = new Set(gms.flatMap(g => Array.isArray(g.plataformas) ? g.plataformas : [g.plataformas]).filter(Boolean));
+          const catEl  = document.getElementById('adminCatCount');
+          const platEl = document.getElementById('adminPlatCount');
+          if (catEl)  catEl.textContent  = cats.size;
+          if (platEl) platEl.textContent = plats.size;
+        }
+      }, 600);
+    });
+  </script>
+</body>
+</html>

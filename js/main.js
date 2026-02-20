@@ -1,6 +1,6 @@
-// ============================================
-//  GAMERPEDIA - main.js
-// ============================================
+/* ===================================
+   = JOSMAR CALEB HERRERA FRANCISCO =
+   ================================== */
 
 const STORAGE_KEY = 'gamerWiki_games';
 const JSON_PATH   = 'Json/videojuegos.json';
@@ -9,7 +9,7 @@ let allGames = [];
 let filteredGames = [];
 let activeCategory = 'all';
 
-// ── Init ──────────────────────────────────
+// Inicio
 document.addEventListener('DOMContentLoaded', async () => {
   await loadGames();
   renderCategoryDropdown();
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   bindEvents();
 });
 
-// ── Load Games ────────────────────────────
+// Cargar juegos
 async function loadGames() {
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored) {
@@ -37,7 +37,7 @@ async function loadGames() {
   filteredGames = [...allGames];
 }
 
-// ── Render Games ──────────────────────────
+// mostrar
 function renderGames(games) {
   const grid = document.getElementById('gamesGrid');
   if (!grid) return;
@@ -92,7 +92,7 @@ function createGameCard(game) {
   return div;
 }
 
-// ── Game Detail Modal ─────────────────────
+// Modal detalles juego
 window.openGameModal = function(id) {
   const game = allGames.find(g => g.id === id);
   if (!game) return;
@@ -123,7 +123,7 @@ window.openGameModal = function(id) {
   openModal('gameModal');
 };
 
-// ── Categories ────────────────────────────
+// Categorias
 function getCategories() {
   return [...new Set(allGames.map(g => g.categoria).filter(Boolean))].sort();
 }
@@ -162,7 +162,6 @@ function renderFilterTags() {
 window.filterByCategory = function(cat, el) {
   activeCategory = cat;
 
-  // Update filter tags
   document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
   if (el) el.classList.add('active');
   else {
@@ -170,7 +169,6 @@ window.filterByCategory = function(cat, el) {
     if (tag) tag.classList.add('active');
   }
 
-  // Apply search + category together
   applyFilters();
 };
 
@@ -193,9 +191,8 @@ function applyFilters() {
   renderGames(result);
 }
 
-// ── Propuestas Modal ──────────────────────
+// Propuestas Modal
 function openPropuestasModal() {
-  // Populate game titles select
   const sel = document.getElementById('propGameTitle');
   if (sel) {
     sel.innerHTML = '<option value="">-- Selecciona un videojuego --</option>';
@@ -209,7 +206,7 @@ function openPropuestasModal() {
   openModal('propuestasModal');
 }
 
-// ── Modal helpers ─────────────────────────
+
 function openModal(id) {
   document.getElementById(id)?.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -220,32 +217,31 @@ window.closeModal = function(id) {
   document.body.style.overflow = '';
 };
 
-// ── Update count ──────────────────────────
+// Agregar
 function updateGameCount(count) {
   const el = document.getElementById('gameCount');
   if (el) el.textContent = (count ?? allGames.length) + ' JUEGOS AGREGADOS';
 }
 
-// ── Events ────────────────────────────────
+// Eventos
 function bindEvents() {
-  // Search
+  // Buscar
   const searchInput = document.getElementById('searchInput');
   if (searchInput) {
     searchInput.addEventListener('input', applyFilters);
   }
 
-  // Propuestas trigger
   document.getElementById('propuestasBtn')?.addEventListener('click', openPropuestasModal);
   document.getElementById('propuestasNavBtn')?.addEventListener('click', openPropuestasModal);
 
-  // Close modals on overlay click
+  // Cerrar modal
   document.querySelectorAll('.modal-overlay').forEach(overlay => {
     overlay.addEventListener('click', e => {
       if (e.target === overlay) closeModal(overlay.id);
     });
   });
 
-  // Propuestas form
+  // Propuestas formulario
   const propForm = document.getElementById('propForm');
   if (propForm) {
     propForm.addEventListener('submit', e => {
@@ -255,7 +251,7 @@ function bindEvents() {
     });
   }
 
-  // Reset propuestas on close
+  // Resetear propuestas
   document.getElementById('closePropuestas')?.addEventListener('click', () => {
     closeModal('propuestasModal');
     setTimeout(() => {
@@ -266,7 +262,7 @@ function bindEvents() {
     }, 300);
   });
 
-  // ESC key
+  // llave
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       document.querySelectorAll('.modal-overlay.open').forEach(m => {
@@ -276,7 +272,7 @@ function bindEvents() {
   });
 }
 
-// ── Helpers ───────────────────────────────
+//  tipo de categoria 
 function getCatClass(cat) {
   if (!cat) return 'cat-default';
   const map = {
